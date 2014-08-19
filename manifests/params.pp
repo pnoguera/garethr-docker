@@ -25,16 +25,16 @@ class docker::params {
   $docker_command_default       = 'docker'
   case $::osfamily {
     'Debian' : {
-      case $::operatingsystem {
-        'Ubuntu' : {
-          $package_name   = $package_name_default
-          $service_name   = $service_name_default
-          $docker_command = $docker_command_default
-        }
-        default: {
+      case $::lsbdistcodename {
+        '(jessie|sid)' : {
           $package_name   = 'docker.io'
           $service_name   = 'docker.io'
           $docker_command = 'docker.io'
+        }
+        default: {
+          $package_name   = $package_name_default
+          $service_name   = $service_name_default
+          $docker_command = $docker_command_default
         }
       }
       $package_source_location = 'https://get.docker.io/ubuntu'
