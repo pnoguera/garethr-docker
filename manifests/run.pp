@@ -67,28 +67,26 @@ define docker::run(
 
   case $::osfamily {
     'Debian': {
-      $initscript = "/etc/init/docker-${sanitised_title}.conf"
-      $init_template = 'docker/etc/init/docker-run.conf.erb'
+      $init_template = 'docker/etc/init.d/docker-run-debian.erb'
       $hasstatus  = true
       $hasrestart = false
-      $mode = '0644'
     }
     'RedHat': {
-      $initscript = "/etc/init.d/docker-${sanitised_title}"
       $init_template = 'docker/etc/init.d/docker-run.erb'
       $hasstatus  = undef
       $hasrestart = undef
-      $mode = '0755'
     }
     default: {
       fail('Docker needs a RedHat or Debian based system.')
     }
   }
 
+  $initscript = "/etc/init.d/docker-${sanitised_title}"
+
   file { $initscript:
     ensure  => present,
     content => template($init_template),
-    mode    => $mode,
+    mode    => '0755',
     notify  => $notify,
   }
 
