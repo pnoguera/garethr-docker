@@ -11,16 +11,16 @@
 # description: Docker container for <%= @title %>
 
 ### BEGIN INIT INFO
-## Provides:       docker-<%= @title %>
-## Required-Start: $network docker
-## Required-Stop: $network docker
-## Should-Start:
-## Should-Stop:
-## Default-Start: 2 3 4 5
-## Default-Stop:  0 1 6
-## Short-Description: start and stop docker container for <%= @title %>
-## Description: Docker container for <%= @title %>
-#### END INIT INFO
+# Provides:       docker-<%= @title %>
+# Required-Start: $network docker
+# Required-Stop: $network docker
+# Should-Start:
+# Should-Stop:
+# Default-Start: 2 3 4 5
+# Default-Stop:  0 1 6
+# Short-Description: start and stop docker container for <%= @title %>
+# Description: Docker container for <%= @title %>
+### END INIT INFO
 
 # Get lsb functions
 . /lib/lsb/init-functions
