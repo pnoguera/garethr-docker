@@ -48,6 +48,9 @@ start() {
         fi
     fi
 
+    # If docker exists, then destroy and recreate it
+    docker inspect <%= @name %> &> /dev/null && docker rm -f <%= @name %>
+
     log_begin_msg "Starting $prog:\t"
     $docker run --cidfile=$cidfile -d=true \
         <% if @username %>-u '<%= @username %>' <% end %> \
