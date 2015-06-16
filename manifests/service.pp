@@ -40,13 +40,6 @@ class docker::service (
       $hasstatus     = true
       $hasrestart    = false
 
-      if ($::lsbdistcodename != 'wheezy') {
-          file { '/etc/init.d/docker':
-              ensure => 'absent',
-              notify => Service['docker'],
-          }
-      }
-
       file { '/etc/default/docker':
         ensure  => present,
         force   => true,
